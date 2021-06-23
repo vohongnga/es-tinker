@@ -17,4 +17,12 @@ class Order extends Model
     protected $fillable = [
         'job_id', 'content'
     ];
+
+    /**Get order detail of order
+     *
+     * @return mixed
+     */
+    public function orderDetail() {
+        return $this->hasMany(OrderDetail::class);
+    }
 }

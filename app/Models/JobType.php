@@ -36,7 +36,7 @@ class JobType extends Model
      *
      * @return mixed
      */
-    protected function jobs() {
+    public function jobs() {
         return $this->hasMany(Job::class);
     }
 }

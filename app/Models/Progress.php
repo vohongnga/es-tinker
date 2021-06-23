@@ -31,4 +31,12 @@ class Progress extends Model
     protected $fillable = [
         'title'
     ];
+
+    /**Get progress detail
+     * 
+     * @return mixed
+     */
+    public function progressDetail() {
+        return  $this->hasMany(ProgressDetail::class);
+    }
 }

@@ -10,6 +10,20 @@ class OrderDetail extends Model
     use HasFactory;
 
     /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'order_details';
+
+    /**
+     * The primary key associated with the table.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'id';
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -17,4 +31,13 @@ class OrderDetail extends Model
     protected $fillable = [
         'order_id', 'order_types_detail_id'
     ];
+
+    /**Get order type detail of order detail
+     *
+     * @return mixed
+     */
+    public function orderTypeDetail() {
+        return $this->belongsTo(OrderTypeDetail::class,'order_types_detail_id');
+    }
+
 }

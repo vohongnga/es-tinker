@@ -30,4 +30,20 @@ class Comment extends Model
     protected $fillable = [
         'user_id', 'job_id', 'message'
     ];
+
+    /**Get user of comment
+     *
+     * @return mixed
+    */
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
+    /**Get job of comment
+     *
+     * @return mixed
+     */
+    public function job() {
+        return $this->belongsTo(Job::class);
+    }
 }

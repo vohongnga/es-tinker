@@ -36,7 +36,7 @@ class ProgressDetail extends Model
      *
      * @return mixed
      */
-    protected function progress() {
+    public function progress() {
         return $this->belongsTo(Progress::class);
     }
 }

@@ -37,7 +37,7 @@ class BaseDepartmentTeam extends Model
      *
      * rerturn @mixed
     */
-    protected function base() {
+    public function base() {
         return $this->belongsTo(Base::class, 'base_id');
     }
 
@@ -45,7 +45,7 @@ class BaseDepartmentTeam extends Model
      *
      * rerturn @mixed
     */
-    protected function department() {
+    public function department() {
         return $this->belongsTo(Department::class, 'department_id');
     }
 
@@ -53,7 +53,7 @@ class BaseDepartmentTeam extends Model
      *
      * @return mixed
     */
-    protected function users() {
+    public function users() {
         return $this->hasMany(User::class);
     }
 }

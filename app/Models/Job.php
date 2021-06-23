@@ -36,7 +36,7 @@ class Job extends Model
      *
      * @return mixed
     */
-    protected function jobUser() {
+    public function jobUser() {
         return $this->hasMany(JobUser::class,'job_id');
     }
 
@@ -44,7 +44,7 @@ class Job extends Model
      *
      * @return mixed
     */
-    protected function users() {
+    public function users() {
         return $this->belongsToMany(User::class, 'jobs_users', 'job_id', 'user_id');
     }
 
@@ -52,7 +52,7 @@ class Job extends Model
      *
      * @return mixed
     */
-    protected function partner() {
+    public function partner() {
         return $this->belongsTo(Partner::class);
     }
 
@@ -60,7 +60,7 @@ class Job extends Model
      *
      *@return mixed
     */
-    protected function orderedPerson() {
+    public function orderedPerson() {
         return $this->belongsTo(User::class,'ordered_person_id');
     }
 
@@ -68,7 +68,7 @@ class Job extends Model
      *
      * @return mixed
      */
-    protected function typeOfJob() {
+    public function typeOfJob() {
         return $this->belongsTo(JobType::class,'job_type_id');
     }
 
@@ -76,7 +76,7 @@ class Job extends Model
      *
      * @return mixed
      */
-    protected function progress() {
+    public function progress() {
         return $this->belongsTo(ProgressDetail::class,'progress_detail_id');
     }
 
@@ -84,12 +84,23 @@ class Job extends Model
      *
      * @return mixed
      */
-    protected function comments() {
+    public function comments() {
         return $this->hasMany(Comment::class);
     }
 
-    /**Get last comment of job */
-    protected function getLastCommentAttribute() {
-        return $this->hasMany(Comment::class)->orderBy('updated_at','DESC')->limit(1);
+    /**Get last comment of job
+     *
+     * @return mixed
+    */
+    public function getLastCommentAttribute() {
+        return $this->hasMany(Comment::class)->orderBy('updated_at','DESC')->take(1);
+    }
+
+    /**Get orders of job\
+     *
+     * @return mixed
+     */
+    public function orders() {
+        return $this->hasMany(Order::class)->whereNull('deleted_at');
     }
 }

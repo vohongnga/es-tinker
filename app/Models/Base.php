@@ -19,7 +19,7 @@ class Base extends Model
         'name'
     ];
 
-    protected function BaseDepartmentTeams() {
+    public function BaseDepartmentTeams() {
         return $this->hasMany(BaseDepartmentTeam::class);
     }
 

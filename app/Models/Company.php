@@ -37,7 +37,7 @@ class Company extends Model
      *
      * @return mixed
     */
-    protected function users() {
+    public function users() {
         return $this->hasMany(User::class);
     }
 
@@ -45,7 +45,7 @@ class Company extends Model
      *
      * @return mixed
     */
-    protected function partners() {
+    public function partners() {
         return $this->hasMany(Partner::class);
     }
 }

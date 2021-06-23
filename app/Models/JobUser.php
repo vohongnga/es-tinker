@@ -29,7 +29,7 @@ class JobUser extends Model
      *
      * @return mixed
     */
-    protected function user() {
+    public function user() {
         return $this->belongsTo(User::class);
     }
 
@@ -37,7 +37,7 @@ class JobUser extends Model
      *
      * @return mixed
     */
-    protected function job() {
+    public function job() {
         return $this->belongsTo(Job::class);
     }
 }

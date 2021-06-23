@@ -30,7 +30,7 @@ class User extends Model
      * @var array
      */
     protected $fillable = [
-        'last_name', 'first_name', 'email', 'role_id', 'base_department_team_id', 'company_id', 'password',
+        'id','last_name', 'first_name', 'email', 'role_id', 'base_department_team_id', 'company_id', 'password',
     ];
 
     /**
@@ -72,7 +72,7 @@ class User extends Model
      *
      * rerturn @mixed
     */
-    protected function base_department_team() {
+    public function base_department_team() {
         return $this->belongsTo(BaseDepartmentTeam::class, 'base_department_team_id');
     }
 
@@ -80,7 +80,7 @@ class User extends Model
      *
      * @return mixed
     */
-    protected function jobUsers() {
+    public function jobUsers() {
         return $this->hasMany(JobUser::class);
     }
 
@@ -88,7 +88,15 @@ class User extends Model
      *
      * @return mixed
     */
-    protected function jobs() {
+    public function jobs() {
         return $this->belongsToMany(Job::class, 'jobs_users', 'user_id','job_id');
+    }
+
+    /**Search
+     *
+     * @return mixed
+     */
+    public function search() {
+        return User::where('last_name','LIKE','%a%')->first();
     }
 }

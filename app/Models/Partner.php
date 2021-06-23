@@ -36,15 +36,31 @@ class Partner extends Model
      *
      * @return mixed
     */
-    protected function jobs() {
-        return $this->hasMany(Job::class);
-    }
+    // public function jobs() {
+    //     return $this->hasMany(Job::class);
+    // }
 
     /**Get company of partner
      *
      * @return mixed
     */
-    protected function company () {
+    public function company () {
         return $this->belongsTo(Company::class);
+    }
+
+    /**Get partner job type of partner
+     *
+     * @return mixed
+     */
+    public function partnerJobType() {
+        return $this->hasMany(PartnerJobType::class);
+    }
+
+    /**Get job for partner
+     *
+     * @return mixed
+     */
+    public function jobs() {
+        return $this->hasMany(Job::class)->whereNull('deleted_at');
     }
 }

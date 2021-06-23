@@ -22,7 +22,7 @@ class Role extends Model
      *
      * @return mixed
      */
-    protected function BaseDepartmentTeams() {
+    public function BaseDepartmentTeams() {
         return $this->hasMany(BaseDepartmentTeamTeam::class);
     }
 }
