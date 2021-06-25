@@ -32,6 +32,13 @@ class JobType extends Model
         'name'
     ];
 
+    /**
+     * The "type" of the auto-incrementing ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'string';
+
     /**Get jobs of job_type
      *
      * @return mixed

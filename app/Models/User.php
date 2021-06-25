@@ -25,6 +25,13 @@ class User extends Model
     protected $primaryKey = 'id';
 
     /**
+     * The "type" of the auto-incrementing ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'string';
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -98,5 +105,13 @@ class User extends Model
      */
     public function search() {
         return User::where('last_name','LIKE','%a%')->first();
+    }
+
+    /**Get history of user
+     *
+     * @return mixed
+     */
+    public function history() {
+        return $this->hasMany(History::class,'user_id','id');
     }
 }

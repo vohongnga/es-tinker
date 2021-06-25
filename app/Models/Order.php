@@ -18,6 +18,13 @@ class Order extends Model
         'job_id', 'content'
     ];
 
+    /**
+     * The "type" of the auto-incrementing ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'string';
+
     /**Get order detail of order
      *
      * @return mixed

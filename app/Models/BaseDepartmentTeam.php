@@ -33,6 +33,13 @@ class BaseDepartmentTeam extends Model
         'base_id', 'department_id', 'team'
     ];
 
+    /**
+     * The "type" of the auto-incrementing ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'string';
+
     /**Get base of base_department_team
      *
      * rerturn @mixed

@@ -24,28 +24,23 @@ class Partner extends Model
     protected $primaryKey = 'id';
 
     /**
+     * The "type" of the auto-incrementing ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'string';
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'company_id', 'tel', 'address',
+        'id','company_id', 'tel', 'address'
     ];
 
-    /**Get jobs of partner
-     *
-     * @return mixed
-    */
-    // public function jobs() {
-    //     return $this->hasMany(Job::class);
-    // }
-
-    /**Get company of partner
-     *
-     * @return mixed
-    */
     public function company () {
-        return $this->belongsTo(Company::class);
+        return $this->belongsTo(Company::class,'company_id');
     }
 
     /**Get partner job type of partner

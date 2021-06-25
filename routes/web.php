@@ -40,5 +40,8 @@ Route::get('/create-user', function() {
     ]);
 echo $result;
 });
-Route::get('/test',[CompanyController::class,'index']);
-Route::get('/progress',[CompanyController::class,'progress']);
+Route::get('/progress',[CompanyController::class,'orderByCompany']);
+Route::get('/search',[CompanyController::class,'searchUser']);
+Route::get('/history',[CompanyController::class,'history']);
+Route::get('/job',[CompanyController::class,'job']);
+Route::get('/partner', [CompanyController::class,'partners']);

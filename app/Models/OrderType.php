@@ -17,4 +17,11 @@ class OrderType extends Model
     protected $fillable = [
         'type', 'title'
     ];
+
+    /**
+     * The "type" of the auto-incrementing ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'string';
 }

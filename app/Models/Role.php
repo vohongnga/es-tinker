@@ -32,6 +32,17 @@ class Role extends Model
         'name'
     ];
 
+    /**
+     * The "type" of the auto-incrementing ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'string';
+
+    /**Get users of role
+     *
+     * @return mixed
+    */
     public function users() {
         return $this->hasMany(User::class);
     }

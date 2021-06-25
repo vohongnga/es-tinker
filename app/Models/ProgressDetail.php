@@ -32,6 +32,13 @@ class ProgressDetail extends Model
         'name', 'progress_id', 'code'
     ];
 
+    /**
+     * The "type" of the auto-incrementing ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'string';
+
     /**Get progress of progress detail
      *
      * @return mixed

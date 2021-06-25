@@ -15,7 +15,6 @@ class Job extends Model
      * @var string
      */
     protected $table = 'jobs';
-
     /**
      * The primary key associated with the table.
      *
@@ -32,12 +31,19 @@ class Job extends Model
         'partner_id', 'ordered_person_id', 'job_type_id', 'description', 'progress_detail_id', 'code',
     ];
 
+    /**
+     * The "type" of the auto-incrementing ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'string';
+
     /**Get jobUser of job
      *
      * @return mixed
     */
     public function jobUser() {
-        return $this->hasMany(JobUser::class,'job_id');
+        return $this->hasMany(JobUser::class,'job_id','id');
     }
 
     /**Get users of job

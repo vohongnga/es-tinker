@@ -25,6 +25,13 @@ class JobUser extends Model
         'job_id', 'user_id'
     ];
 
+    /**
+     * The "type" of the auto-incrementing ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'string';
+
     /**Get user of jobUser
      *
      * @return mixed

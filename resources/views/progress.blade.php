@@ -21,16 +21,26 @@
         </style>
     </head>
     <body class="antialiased">
-        <table border="1px">
-            <tr>
-                <th></th>
-    @foreach ($progress as $item)
-    <th>{{$item->title}}</th>
-    @endforeach
-
-                <td></td>
-            </tr>
-            <tr><td>0 point</td></tr>
-        </table>
+       @foreach ($result as $orderType=>$order)
+           <h5>{{$orderType}}</h5>
+           <table>
+               <tr>
+                   <th>依頼業務</th>
+                   <th>合計l</th>
+               </tr>
+               @foreach ($order as $item)
+               <tr>
+                   <td>{{$item}}</td>
+                   <td>0 point</td>
+               </tr>
+               @endforeach
+           </table>
+       @endforeach
+<h2>Job</h2>
+       @foreach ($company->partners as $partner)
+           @foreach ($partner->jobs as $job)
+               <h5>{{$job->code}}</h5>
+           @endforeach
+       @endforeach
     </body>
 </html>

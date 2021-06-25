@@ -32,6 +32,12 @@ class Company extends Model
         'name', 'abbreviation'
     ];
 
+    /**
+     * The "type" of the auto-incrementing ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'string';
 
     /**Relation with model User
      *
@@ -45,7 +51,7 @@ class Company extends Model
      *
      * @return mixed
     */
-    public function partners() {
-        return $this->hasMany(Partner::class);
-    }
+   public function partners() {
+       return $this->hasMany(Partner::class);
+   }
 }

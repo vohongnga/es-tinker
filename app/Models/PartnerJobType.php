@@ -32,6 +32,13 @@ class PartnerJobType extends Model
         'partner_id', 'job_type_id', 'capacity'
     ];
 
+    /**
+     * The "type" of the auto-incrementing ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'string';
+
     /**Get job type of partners
      *
      * @return mixed

@@ -30,25 +30,17 @@
         </style>
     </head>
     <body class="antialiased">
-        <h2>Comments</h2>
-        @foreach ($job->comments as $comment)
-            <p><>{{$comment->user->company->name}}{{$comment->message}}</p>
+        @foreach ($partners as $partner)
+            <h2>{{$partner->company->abbreviation}}</h2>
+            @foreach ($partner->partnerJobType as $jobType)
+                <p>--{{$jobType->jobtype->name}}</p>
+                @foreach ($jobType->jobtype->jobs as $job)
+                    @foreach ($job->orders as $order)
+                        <p>-------{{$order->content}}</p>
+                    @endforeach
+                    
+                @endforeach
+            @endforeach
         @endforeach
-        <table>
-           <tr>
-               <th rowspan="2">Request</th>
-               @foreach ($orders as $orderType=>$order)
-               <?php $cols = count($order); ?>
-               <th colspan="{{$cols}}">{{$orderType}}</th>
-               @endforeach
-           </tr>
-           <tr>
-               @foreach ($orders as $orderType=>$order)
-                   @foreach ($order as $item)
-                   <th>{{$item}}</th>
-                   @endforeach
-               @endforeach
-           </tr>
-        </table>
     </body>
 </html>

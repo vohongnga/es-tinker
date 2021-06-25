@@ -17,4 +17,11 @@ class ProgressJobType extends Model
     protected $fillable = [
         'progress_id', 'job_type_id'
     ];
+
+    /**
+     * The "type" of the auto-incrementing ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'string';
 }

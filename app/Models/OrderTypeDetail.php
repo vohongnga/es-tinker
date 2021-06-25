@@ -32,6 +32,13 @@ class OrderTypeDetail extends Model
         'order_type_id', 'title'
     ];
 
+    /**
+     * The "type" of the auto-incrementing ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'string';
+
     /**Get order type of order type detail
      *
      * @return mixed
