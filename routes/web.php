@@ -40,8 +40,9 @@ Route::get('/create-user', function() {
     ]);
 echo $result;
 });
-Route::get('/progress',[CompanyController::class,'orderByCompany']);
+Route::get('/progress',[CompanyController::class,'summary']);
 Route::get('/search',[CompanyController::class,'searchUser']);
 Route::get('/history',[CompanyController::class,'history']);
 Route::get('/job',[CompanyController::class,'job']);
 Route::get('/partner', [CompanyController::class,'partners']);
+Route::get('/company/{id}',[CompanyController::class, 'getOrderCompany'])->name('company');

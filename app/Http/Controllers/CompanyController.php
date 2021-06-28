@@ -21,20 +21,44 @@ class CompanyController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    /**Get orders of company
+    /**Get list company
      *
      * @return view
      */
-    public function orderByCompany () {
-        $company = Company::with('partners.jobs.orders.orderDetail.orderTypeDetail.orderType')->find('4700eee4-fb98-440b-87cc-f5c0f691da13');
+    public function summary () {
+        $companies = Company::whereNull('deleted_at')->select('id','abbreviation')->get();
+        return view('progress',compact('companies'));
+    }
+
+    /**Get orders of company
+     *
+     * @param String id
+     * @return view
+     */
+    public function getOrderCompany($id) {
+        $company = Company::with('partners.jobs.orders.orderDetail.orderTypeDetail.orderType')->find($id);
         $result = [];
         foreach ($company->partners as $partner) {
             foreach( $partner->jobs as $job) {
                 $result = $this->groupOrder($job,$result);
             }
         }
-        dd($result);
-        return view('progress',compact('result','company'));
+        foreach ($result as $orderType=>$order) {
+           echo '<h5>'.$orderType.'</h5>';
+           echo '<table>
+               <tr>
+                   <th>依頼業務</th>
+                   <th>合計l</th>
+               </tr>';
+               foreach ($order as $item) {
+               echo '<tr>
+                   <td>'.$item.'</td>
+                   <td>0 point</td>
+               </tr>';
+        }
+           echo '</table>';
+    }
+
     }
 
     /**search users by lastname, email, company, team, base
