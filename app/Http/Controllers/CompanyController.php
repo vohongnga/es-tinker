@@ -43,6 +43,14 @@ class CompanyController extends BaseController
                 $result = $this->groupOrder($job,$result);
             }
         }
+
+        $orders = [];
+        $job = Job::with(['orderedPerson.company','users'=>function($q){
+            $q->whereNull('deleted_at');
+        },'users.company','typeOfJob','orders.orderDetail.orderTypeDetail.orderType','comments.user'])->where('id','290003d6-b871-4ecd-a122-50e68917ed7d')->first();
+        $orders = $this->groupOrder($job,$orders);
+
+        echo '<h3>Total</h3><br>';
         foreach ($result as $orderType=>$order) {
            echo '<h5>'.$orderType.'</h5>';
            echo '<table>
@@ -57,6 +65,37 @@ class CompanyController extends BaseController
                </tr>';
         }
            echo '</table>';
+    }
+
+    echo '<br><h3>Detail</h3><br>';
+    foreach ($company->partners as $partner) {
+        foreach ($partner->jobs as $job) {
+            $orders = [];
+            $job = Job::with(['orderedPerson.company','users'=>function($q){
+                $q->whereNull('deleted_at');
+            },'users.company','typeOfJob','orders.orderDetail.orderTypeDetail.orderType','comments.user'])->where('jobs.id',$job->id)->first();
+
+            $orders = $this->groupOrder($job,$orders);
+            if(count($orders) >0) {
+            echo '<h5>JOB番号: '.$job->code.'</h5>';
+            echo '<table class="detail">
+            <tr>
+                <th rowspan="2">Request</th>';
+                foreach ($orders as $orderType=>$order) {
+                 $cols = count($order); 
+                echo '<th colspan='.$cols.'>'.$orderType.'</th>';
+                }
+            echo '</tr>
+            <tr>';
+                foreach ($orders as $orderType=>$order) {
+                    foreach ($order as $item) {
+                    echo '<th>'.$item.'</th>';
+                    }
+                }
+            echo '</tr>
+         </table><br>';
+            }
+        }
     }
 
     }
@@ -87,7 +126,9 @@ class CompanyController extends BaseController
         $orders = [];
         $job = Job::with(['orderedPerson.company','users'=>function($q){
             $q->whereNull('deleted_at');
-        },'users.company','typeOfJob','orders.orderDetail.orderTypeDetail.orderType','comments.user'])->where('id','290003d6-b871-4ecd-a122-50e68917ed7d')->first();
+        },'users.company','typeOfJob','orders.orderDetail.orderTypeDetail.orderType','comments.user'])->where('jobs.id','6b210941-17e6-4113-96fb-9e7c6752a4e0')->first();
+
+        dd($job);
         $orders = $this->groupOrder($job,$orders);
         return view('index',compact('job','orders'));
     }

@@ -24,12 +24,12 @@
             }
             table {
                 width: 500px;
-                margin-left: auto;
-                margin-right: auto;
                 border-collapse: collapse;
+                margin-bottom: 20px;
             }
             table, th, td {
                 border: 1px solid;
+                padding: 2px;
             }
             .company {
                 width: 100%;
@@ -45,6 +45,13 @@
             }
             .hide {
                 display: none;
+            }
+            h5{
+                font-weight: bold;
+            }
+            .detail {
+                width: 100%;
+                margin-bottom: 30px
             }
         </style>
     </head>
@@ -71,11 +78,11 @@
                     var className = $(this).data('class');
                     var i = $(this).data('id') -1 ;
                     var nameId = document.getElementsByClassName('company')[i].id;
-                    let el = document.getElementById(className);
-                    if (el.className === 'show'){
-                        el.className = 'hide';
+                    let element = document.getElementById(className);
+                    if (element.className === 'show'){
+                        element.className = 'hide';
                     } else {
-                        el.className = 'show';
+                        element.className = 'show';
                     }
 
                     $.ajax({
